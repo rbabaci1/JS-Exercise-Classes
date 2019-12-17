@@ -142,7 +142,7 @@ class Instructor extends Lambdasian{
   }
   addMinusPoints(student) {
 		let randomNumber = Math.ceil( Math.random() * 10);
-		(randomNumber > 3) ? student.grade += randomNumber : student.grade -= randomNumber;
+		(randomNumber > 4) ? student.grade += randomNumber : student.grade -= randomNumber;
   }
 }
 
@@ -178,13 +178,14 @@ class Student extends Lambdasian {
   sprintChallenge(subject) {
     return `${this.name} has begun sprint challenge on ${subject}`;
   }
-  graduate(instructor) {
-		if (this.grade > 70) {
-			return `Congrats !!!`;
-		} else {
-			instructor.addMinusPoints(this);
-    }
-  }
+  graduate(instructor, student) {
+		while(student.grade <= 70) {
+			console.log(`${instructor.name}: you're short ${70 - student.grade} points ${student.name}.`);
+			console.log(`I'll have to regrade your shit again 🙄`);
+			instructor.addMinusPoints(student);
+		}
+		console.log(`${instructor.name}: 😊 Happy graduation!!!`);
+	}
 }
 
 /*
@@ -222,6 +223,18 @@ class ProjectManager extends Instructor{
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
+
+// Uncomment to test the stretch problem:
+
+  // let lambdasian = new Lambdasian({name: 'Brian', age: 35, location: 'San Francisco'});
+
+  // let instructor = new Instructor({name: 'Pace', age: 30, location: 'Arizona', specialty: 'Teaching', favLanguage: 'English', catchPhrase: "Please, dm me for help!"});
+
+  // let student = new Student({name: 'Rabah', age: 25, location: 'Algeria', specialty: 'Coder', favLanguage: 'Kabyle', catchPhrase: "Azul felawen", previousBackground: 'Uber driver', className: 'JS Fundamentals', favSubjects: ['JS', 'AI', 'Hacking']});
+
+  // let pm = new ProjectManager({name: 'Austen', age: 33, location: 'Mountain View', specialty: 'Software engineer', favLanguage: 'English', catchPhrase: "Let's fucking do it!", gradClassName: 'JS III', favInstructor: 'Pace Ellsworth'});
+
+  // console.log(student.graduate(instructor, student));
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
